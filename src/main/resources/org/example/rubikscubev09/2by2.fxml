@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="664.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.rubikscubev09.Controller_Ui_2by2">
+   <children>
+      <Ellipse fx:id="epse_R" fill="#1f93ff00" layoutX="335.0" layoutY="230.0" radiusX="98.0" radiusY="81.0" stroke="BLACK" strokeType="INSIDE" />
+      <Ellipse fx:id="epse_F" fill="#1f93ff00" layoutX="333.0" layoutY="382.0" radiusX="98.0" radiusY="81.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="epse_U" fill="#1f93ff00" layoutX="242.0" layoutY="309.0" radius="125.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="epse_D" fill="#1f93ff00" layoutX="242.0" layoutY="309.0" radius="72.0" stroke="BLACK" strokeType="INSIDE" />
+      <Button fx:id="bt_Back" layoutX="14.0" layoutY="625.0" mnemonicParsing="false" onAction="#pressed_btBack" text="Back" />
+      <Text fx:id="txt_Standart0" layoutX="345.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="24.0" />
+         </font></Text>
+      <Text fx:id="txt_Standart1" layoutX="220.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="24.0" />
+         </font></Text>
+      <Text fx:id="txt_Standart6" layoutX="148.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="24.0" />
+         </font></Text>
+      <Text fx:id="txt_Standart2" layoutX="96.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="24.0" />
+         </font></Text>
+      <Text fx:id="txt_Standart4" layoutX="289.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="24.0" />
+         </font></Text>
+      <Text fx:id="txt_Standart5" layoutX="224.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="24.0" />
+         </font></Text>
+      <Text fx:id="txt_Standart7" layoutX="220.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="24.0" />
+         </font></Text>
+      <Button fx:id="bt_TurnU" layoutX="458.0" layoutY="68.0" mnemonicParsing="false" onAction="#pressed_btTurnU" text="U" />
+      <Button fx:id="bt_TurnD" layoutX="458.0" layoutY="92.0" mnemonicParsing="false" onAction="#pressed_btTurnD" text="D" />
+      <Button fx:id="bt_TurnR" layoutX="459.0" layoutY="115.0" mnemonicParsing="false" onAction="#pressed_btTurnR" text="R" />
+      <Button fx:id="bt_TurnL" layoutX="460.0" layoutY="137.0" mnemonicParsing="false" onAction="#pressed_btTurnL" text="L" />
+      <Button fx:id="bt_TurnF" layoutX="461.0" layoutY="162.0" mnemonicParsing="false" onAction="#pressed_btTurnF" text="F" />
+      <Button fx:id="bt_TurnB" layoutX="460.0" layoutY="189.0" mnemonicParsing="false" onAction="#pressed_btTurnB" text="B" />
+      <TextArea fx:id="txtA_lastTurns" layoutX="511.0" layoutY="6.0" maxHeight="1.7976931348623157E308" prefHeight="586.0" prefWidth="75.0" />
+      <Button fx:id="bt_TurnUi" layoutX="483.0" layoutY="68.0" mnemonicParsing="false" onAction="#pressed_bt_TurnUi" text="U'" />
+      <Button fx:id="bt_TurnDi" layoutX="483.0" layoutY="92.0" mnemonicParsing="false" onAction="#pressed_btTurnD" text="D'" />
+      <Button fx:id="bt_TurnRi" layoutX="484.0" layoutY="115.0" mnemonicParsing="false" onAction="#pressed_bt_TurnRi" text="R'" />
+      <Button fx:id="bt_TurnLi" layoutX="485.0" layoutY="137.0" mnemonicParsing="false" onAction="#pressed_bt_TurnLi" text="L'" />
+      <Button fx:id="bt_TurnFi" layoutX="485.0" layoutY="162.0" mnemonicParsing="false" onAction="#pressed_bt_TurnFi" text="F'" />
+      <Button fx:id="bt_TurnBi" layoutX="485.0" layoutY="189.0" mnemonicParsing="false" onAction="#pressed_bt_TurnBi" text="B'" />
+      <Button fx:id="bt_reset" layoutX="649.0" layoutY="346.0" mnemonicParsing="false" onAction="#pressed_bt_Reset" text="Reset" />
+      <Text fx:id="txt_Standart3" layoutX="224.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="24.0" />
+         </font></Text>
+      <Ellipse fx:id="epse_B" fill="#1f93ff00" layoutX="159.0" layoutY="230.0" radiusX="87.0" radiusY="86.0" stroke="BLACK" strokeType="INSIDE" />
+      <Ellipse fx:id="epse_L" fill="#1f93ff00" layoutX="148.0" layoutY="389.0" radiusX="98.0" radiusY="81.0" stroke="BLACK" strokeType="INSIDE" />
+      <Button fx:id="bt_linesOn_Off" layoutX="646.0" layoutY="295.0" mnemonicParsing="false" onAction="#pressed_bt_linesOn_Off" text="Lines" />
+      <Button fx:id="bt_StartScrambel" layoutX="642.0" layoutY="125.0" mnemonicParsing="false" onAction="#pressed_btStartScrambel" text="Scambel" />
+      <Button fx:id="bt_StartAutoSolve" layoutX="642.0" layoutY="175.0" mnemonicParsing="false" onAction="#pressed_btStartAutoSolve" text="Auto Solve" />
+      <Text fx:id="txt_Cubesolved" fill="#2600ff" layoutX="231.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+   </children>
+</AnchorPane>
