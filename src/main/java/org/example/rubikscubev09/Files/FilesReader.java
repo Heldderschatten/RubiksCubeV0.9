@@ -10,7 +10,7 @@ import java.nio.file.*;
 import java.util.*;
 
 public class FilesReader {
-    public void makeSafe(Graph graph, String filename) {
+    public static void makeSafe(Graph graph, String filename) {
         System.out.println("FilesReader.makeSafe");
         String Path = System.getProperty("user.dir");
         Path += System.getProperty("file.separator") + filename;
@@ -28,7 +28,7 @@ public class FilesReader {
         }
     }
 
-    public boolean generateFile(String Path) {
+    public static boolean generateFile(String Path) {
         System.out.println("FilesReader.generateFile");
         File file = new File(Path);
         try {
@@ -43,7 +43,7 @@ public class FilesReader {
         }
     }
 
-    public Graph readFiels(String path) {
+    public static Graph readFiels(String path) {
         System.out.println("FilesReader.readFiels");
         Path filePath = Paths.get(path);
         System.out.println(filePath);
@@ -64,7 +64,7 @@ public class FilesReader {
         return g;
     }
 
-    public Graph getGraphFromFile(List<String> jasonFileStrings) {
+    public static Graph getGraphFromFile(List<String> jasonFileStrings) {
         System.out.println("FilesReader.getGraphFromFile");
         //Parameters
         int n = -1;
@@ -172,7 +172,7 @@ public class FilesReader {
                 }
                 System.out.println(s2);
             }
-            nodes[counter] = new Node(new Point(name,color));
+            //nodes[counter] = new Node(new Point(name,color));
             counter++;
         }
         Graph g =  new Graph(n, numberOfNodes,adjacencylists,nodes);
@@ -186,7 +186,7 @@ public class FilesReader {
         return g;
     }
 
-    private int findLine(String search, String[] arr) {
+    private static int findLine(String search, String[] arr) {
         for (int i = 0; i < arr.length; i++) {
             if (arr[i].contains(search)) {
                 return i;

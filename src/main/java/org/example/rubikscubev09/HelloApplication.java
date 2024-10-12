@@ -8,8 +8,11 @@ import javafx.stage.Stage;
 import org.example.rubikscubev09.Files.FilesReader;
 import org.example.rubikscubev09.cubes.Controller_Cube_2by2;
 import org.example.rubikscubev09.data.Graph;
+import org.junit.Test;
 
 import java.io.IOException;
+
+import static org.junit.Assert.assertEquals;
 
 public class HelloApplication extends Application {
     @Override

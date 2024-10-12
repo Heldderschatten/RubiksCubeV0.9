@@ -2,9 +2,10 @@ package org.example.rubikscubev09.data;
 
 import javafx.scene.paint.Color;
 
-public class Point {
+public class Point implements Cloneable{
     private String name;
     private Color color = Color.BLACK;
+    //private String colorString = Color.BLACK;
 
     public Point(String name){
         this.name = name;
@@ -40,5 +41,11 @@ public class Point {
                 "\n\t\t\t\t\t\"name\" : \"" + name + "\"," +
                 "\n\t\t\t\t\t\"color\" : \"" + color +"\","+
                 "\n\t\t\t\t}";
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        System.out.println("Point.clone");
+        return super.clone();
     }
 }

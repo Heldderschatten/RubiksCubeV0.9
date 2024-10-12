@@ -17,6 +17,7 @@ public class Controller_Cube_2by2 implements IlogicalCubes {
 
     public Controller_Cube_2by2() {
         System.out.println("Controller_Cube_2by2.Controller_Cube_2by2");
+        start();
         possibleMovesStringToInt.put("U", 1);
         possibleMovesStringToInt.put("D", 2);
         possibleMovesStringToInt.put("R", 3);
@@ -41,19 +42,19 @@ public class Controller_Cube_2by2 implements IlogicalCubes {
 
         nodes = new Node[n];
 
-        nodes[0] = new Node(p1);
-        nodes[1] = new Node(p2);
-        nodes[2] = new Node(p3);
-        nodes[3] = new Node(p4);
-        nodes[4] = new Node(p5);
-        nodes[5] = new Node(p6);
-        nodes[6] = new Node(p7);
-        nodes[7] = new Node(p8);
+        nodes[0] = new Node(p1, new int[]{2, 4});
+        nodes[1] = new Node(p2, new int[]{0, 2});
+        nodes[2] = new Node(p3, new int[]{2, 0});
+        nodes[3] = new Node(p4, new int[]{4, 2});
+        nodes[4] = new Node(p5, new int[]{2, 3});
+        nodes[5] = new Node(p6, new int[]{1, 2});
+        nodes[6] = new Node(p7, new int[]{2, 1});
+        nodes[7] = new Node(p8, new int[]{3, 2});
 
         g = new Graph(n);
         for (Node n : nodes) {
             //g.addNode(n);
-            g.addNode(new Node(new Point(n.getPoint().getName(), n.getPoint().getColor())));
+            g.addNode(new Node(new Point(n.getPoint().getName(), n.getPoint().getColor()),n.getPostion()));
         }
 
         g.addPath(1, 0, 1);
@@ -88,7 +89,7 @@ public class Controller_Cube_2by2 implements IlogicalCubes {
 
     }
 
-    public void something() {
+    /*public void something() {
         Point p1 = new Point(1, Color.BLUE);
         Point p2 = new Point(2, Color.RED);
         Point p3 = new Point(3, Color.GREEN);
@@ -116,7 +117,7 @@ public class Controller_Cube_2by2 implements IlogicalCubes {
         solvedGraph.addNode(n5);
         solvedGraph.addNode(n6);
         solvedGraph.addNode(n7);
-    }
+    }*/
 
     @Override
     public boolean doStep(int step) {
@@ -160,6 +161,26 @@ public class Controller_Cube_2by2 implements IlogicalCubes {
             }
         }
         return solved;
+    }
+
+    public Graph getSolvedGraph() {
+        return solvedGraph;
+    }
+
+    public int[] getPossibleMovesIntger() {
+        return possibleMovesIntger;
+    }
+
+    public Node[] getNodes() {
+        return nodes;
+    }
+
+    public Map<String, Integer> getPossibleMovesStringToInt() {
+        return possibleMovesStringToInt;
+    }
+
+    public int getN() {
+        return n;
     }
 
     public Graph getG() {

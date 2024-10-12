@@ -3,7 +3,7 @@ package org.example.rubikscubev09.data;
 
 import java.util.Arrays;
 
-public class Graph {
+public class Graph implements Cloneable{
 
     private int n;
     private int numberOfNodes = 0;
@@ -164,4 +164,11 @@ public class Graph {
         return s;
     }
 
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        System.out.println("Graph.clone");
+        Graph g = (Graph) super.clone();
+        g.nodes = (Node[]) nodes.clone();
+        return g;
+    }
 }
