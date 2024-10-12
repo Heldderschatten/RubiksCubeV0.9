@@ -5,23 +5,25 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.Node;
+
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.example.rubikscubev09.Files.CubeToJsonConverter;
-import org.example.rubikscubev09.Files.FilesReader;
-import org.example.rubikscubev09.Files.GraphToJsonConverter;
-import org.example.rubikscubev09.cubes.Controller_Cube_2by2;
 
+
+import org.example.rubikscubev09.Files.CubeToJsonConverter;
+
+import org.example.rubikscubev09.cubes.Controller_Cube_2by2;
 import org.example.rubikscubev09.data.Cube;
 import org.example.rubikscubev09.data.Graph;
 
@@ -30,12 +32,15 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 public class Cube_UI_Controller implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
     private FileChooser fileChooser;
+    private Cube cube;
+    private Button[] moveButtons;
 
     @FXML
     private GridPane cubePane;
@@ -49,14 +54,27 @@ public class Cube_UI_Controller implements Initializable {
     private MenuBar menuBar;
     @FXML
     private Group group;
+    @FXML
+    private VBox buttonBox;
+    @FXML
+    private Label solvedLabel;
+    @FXML
+    private TextArea lastMoves;
 
-    private int h = 1;
-
-
+    @FXML
+    public void initialize(){
+        System.out.println("Cube_UI_Controller.initialize(@FXML)");
+        //scene = cubePane.getScene();
+        //scene.addEventFilter(KeyEvent.KEY_PRESSED, this::handleGlobalKeyPress);
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Cube_UI_Controller.initialize");
-
+        setNewCube();
+    }
+    private void handleGlobalKeyPress(KeyEvent event) {
+        // Hier kannst du globale Tasteneingaben verarbeiten
+        System.out.println("Globale Taste gedrückt: " + event.getCode());
     }
     public void setGridSize(int n) {
         // Entferne alle existierenden Elemente aus der GridPane
@@ -76,34 +94,74 @@ public class Cube_UI_Controller implements Initializable {
             row.setPercentHeight(100.0 / n); // Gleichmäßige Verteilung der Zeilen
             cubePane.getRowConstraints().add(row);
         }
-
-        // Füge dynamisch Labels zu den Zellen hinzu
-        for (int row = 0; row < n; row++) {
-            for (int col = 0; col < n; col++) {
-                Label label = new Label("(" + row + "," + col + ")");
-                cubePane.add(label, col, row);  // Füge das Label an der Position (col, row) hinzu
-            }
-        }
     }
-    public void pressedBtTest(ActionEvent event) {
-        System.out.println("Cube_UI_Controller.pressedBtTest");
-        setGridSize(5);
-        System.out.println("-----StartTest-----");
 
-        Controller_Cube_2by2 controllerCube2by2 = new Controller_Cube_2by2();
-        controllerCube2by2.start();
+    public void pressedSelectCube(ActionEvent event) {
+        System.out.println("Cube_UI_Controller.pressedSelectCube");
+        setNewCube();
+    }
+    private void setNewCube(){
+        System.out.println("Cube_UI_Controller.setNewCube");
+        fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+        File file = fileChooser.showOpenDialog(stage);
+        String filepath = file.getPath();
+        cube = CubeToJsonConverter.readGCubeFromJson(filepath);
+        addMoveButtons();
+        updatecubePane();
+        updateMoveslist();
+    }
+    public void safeCube(){
+        DirectoryChooser chooser =  new DirectoryChooser();
+        chooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        TextInputDialog dilaog = new TextInputDialog();
+        Optional<String> safeNameopt = dilaog.showAndWait();
+        File file = chooser.showDialog(stage);
+        String safeName = safeNameopt.get();
+        String filePath = file.getPath() + System.getProperty("file.separator") + safeNameopt.get()+".json";
+        CubeToJsonConverter.writeCubeToJson(cube,filePath);
 
-        Cube cubeController = new Cube(controllerCube2by2.getG(),8,"2mal2");
-        String filepath = System.getProperty("user.dir") +"\\" + cubeController.getName()+".json";
-        cubeController.setPossibleMovesIntger(controllerCube2by2.getPossibleMovesIntger());
-        cubeController.setPossibleMovesStringToInt(controllerCube2by2.getPossibleMovesStringToInt());
+    }
 
+    private void addMoveButtons() {
+        System.out.println("Cube_UI_Controller.addMoveButtons");
+        Set<String> stringsMoveButtons = cube.getPossibleMovesStringToInt().keySet();
+        buttonBox.getChildren().clear();
+        moveButtons = new Button[stringsMoveButtons.size()];
+        int counter = 0;
+        for (String s : stringsMoveButtons) {
+            moveButtons[counter] = new Button(s);
+            moveButtons[counter].setOnAction(event -> pressedAMoveButton(event));
+            counter++;
+        }
+        buttonBox.getChildren().addAll(moveButtons);
 
-        CubeToJsonConverter.writeCubeToJson(cubeController,filepath);
-        Cube cube = CubeToJsonConverter.readGCubeFromJson(filepath);
+    }
 
+    public void pressedAMoveButton(ActionEvent event) {
+        System.out.println("Cube_UI_Controller.pressedAMoveButton");
+        System.out.println(((Button) event.getSource()).getText());
+        cube.doStep(((Button) event.getSource()).getText());
+        updatecubePane();
+        updateMoveslist();
+    }
+    private void initMoveList(){
 
-        System.out.println("-----EndTest-----");
+    }
+    private void updateMoveslist(){
+        lastMoves.clear();
+        lastMoves.setText(cube.getDidSteps().toString());
+
+    }
+    public void updatecubePane() {
+        setGridSize((cube.getSize() * 2) + 1);
+        for (org.example.rubikscubev09.data.Node node : cube.getWorkingGraph().getNodes()) {
+            Label label = new Label(node.getPoint().getName());
+            label.setTextFill(node.getPoint().getColor());
+            label.setFont(Font.font("Arial",25));
+            cubePane.add(label, node.getPostion()[0], node.getPostion()[1]);
+        }
+        solvedLabel.setVisible(cube.checkCubeSolved());
     }
 
     public void pressed_btBack(ActionEvent event) throws IOException {
@@ -120,13 +178,6 @@ public class Cube_UI_Controller implements Initializable {
             stage.setScene(scene);
             stage.show();
         }
-    }
-
-    public void presed_SelectCube(ActionEvent event) {
-        System.out.println("Cube_UI_Controller.presed_SelectCube");
-        fileChooser = new FileChooser();
-        fileChooser.setTitle("SelectCube");
-        File cubeFile = fileChooser.showOpenDialog(stage);
     }
 
     private void setCubePane(Graph graph) {

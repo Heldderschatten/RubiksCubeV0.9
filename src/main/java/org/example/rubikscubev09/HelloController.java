@@ -41,10 +41,13 @@ public class HelloController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } else if (s.equals(availableStrings[1])) {
-            root = FXMLLoader.load(getClass().getResource("Cube.fxml"));
+            root = FXMLLoader.load(getClass().getResource("cube.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
+            scene.getStylesheets().add("org/example/rubikscubev09/cubeStyle.css");
             stage.setScene(scene);
+            stage.setFullScreen(true);
+            stage.setFullScreenExitHint("");
             stage.show();
         } else {
             System.out.println("Wrong input");

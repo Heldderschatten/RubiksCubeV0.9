@@ -42,14 +42,14 @@ public class Controller_Cube_2by2 implements IlogicalCubes {
 
         nodes = new Node[n];
 
-        nodes[0] = new Node(p1, new int[]{2, 4});
-        nodes[1] = new Node(p2, new int[]{0, 2});
-        nodes[2] = new Node(p3, new int[]{2, 0});
-        nodes[3] = new Node(p4, new int[]{4, 2});
-        nodes[4] = new Node(p5, new int[]{2, 3});
-        nodes[5] = new Node(p6, new int[]{1, 2});
-        nodes[6] = new Node(p7, new int[]{2, 1});
-        nodes[7] = new Node(p8, new int[]{3, 2});
+        nodes[0] = new Node(p1, new int[]{4, 2});
+        nodes[1] = new Node(p2, new int[]{2, 0});
+        nodes[2] = new Node(p3, new int[]{0, 2});
+        nodes[3] = new Node(p4, new int[]{2, 4});
+        nodes[4] = new Node(p5, new int[]{3, 2});
+        nodes[5] = new Node(p6, new int[]{2, 1});
+        nodes[6] = new Node(p7, new int[]{1, 2});
+        nodes[7] = new Node(p8, new int[]{2, 3});
 
         g = new Graph(n);
         for (Node n : nodes) {

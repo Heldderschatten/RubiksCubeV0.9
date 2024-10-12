@@ -1,5 +1,6 @@
 package org.example.rubikscubev09.data;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,13 +8,15 @@ public class Cube implements IlogicalCubes{
     private Graph workingGraph;
     private Graph solvedGraph;
     private int sizeStone;
-    private int[] possibleMovesIntger = {1, 2, 3, 4, 5, 6};
+    private int[] possibleMovesIntger;
     private Map<String, Integer> possibleMovesStringToInt = new HashMap<>();
     private String name;
+    private int size;
+    private ArrayList<String> didSteps =  new ArrayList<>();
 
 
 
-    public Cube(Graph graph, int sizeStone, String name) {
+    public Cube(Graph graph, int sizeStone,int size, String name ) {
         try{
             this.workingGraph = (Graph) graph.clone();
             this.solvedGraph = (Graph) graph.clone();
@@ -22,6 +25,7 @@ public class Cube implements IlogicalCubes{
         }
         this.sizeStone = sizeStone;
         this.name = name;
+        this.size = size;
     }
     public void setPossibleMovesStringToInt(Map<String, Integer> possibleMovesStringToInt) {
         this.possibleMovesStringToInt = possibleMovesStringToInt;
@@ -43,6 +47,7 @@ public class Cube implements IlogicalCubes{
         for (int i : possibleMovesIntger) {
             if (i == step) {
                 workingGraph.turn(step);
+                didSteps.add(String.valueOf(i));
                 return true;
             }
         }
@@ -80,12 +85,22 @@ public class Cube implements IlogicalCubes{
         return solved;
     }
 
+
     /**
      * Getter and Setter:
      * @return
      */
+
     public Graph getWorkingGraph() {
         return workingGraph;
+    }
+
+    public ArrayList<String> getDidSteps() {
+        return didSteps;
+    }
+
+    public int getSize() {
+        return size;
     }
 
     public String getName() {
