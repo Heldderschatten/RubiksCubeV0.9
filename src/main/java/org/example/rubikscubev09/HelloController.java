@@ -54,11 +54,19 @@ public class HelloController implements Initializable {
         }
 
     }
+    @FXML
+    public void pressed_CreateCube(ActionEvent event) throws IOException{
+        System.out.println("HelloController.pressed_CreateCube");
+        root = FXMLLoader.load(getClass().getResource("createCube.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("HelloController.initialize");
         cb_CubeSelectBox.getItems().addAll(availableStrings);
-
     }
 }

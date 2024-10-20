@@ -13,7 +13,7 @@ public class Graph implements Cloneable{
         this.n = n;
         this.adjacencylists = new int[n][n];
         nodes = new Node[n];
-        System.out.println("Der Graph ist " + n + " Knoten groß");
+        //System.out.println("Der Graph ist " + n + " Knoten groß");
     }
 
     public Graph(int n, int numberOfNodes, int[][] adjacencylists, Node[] nodes) {
@@ -35,7 +35,7 @@ public class Graph implements Cloneable{
     }
 
     public boolean addNode(Node theNode, int index) {
-        System.out.println("Graph.addNode");
+        //System.out.println("Graph.addNode");
         if (index < n && index >= 0) {
             nodes[index] = theNode;
             return true;
@@ -57,7 +57,7 @@ public class Graph implements Cloneable{
     }
 
     public Node[] getNodes() {
-        System.out.println("Graph.getNodes");
+        //System.out.println("Graph.getNodes");
         return nodes;
     }
 
@@ -96,7 +96,7 @@ public class Graph implements Cloneable{
     }
 
     private void turnTwo(int start, int wight, int firstStart, boolean firstTime) {
-        System.out.println("Graph.turnTwo");
+        //System.out.println("Graph.turnTwo");
         int end = -1;
         for (int i = 0; i < n; i++) {
             if (adjacencylists[start][i] == wight) {
@@ -111,7 +111,7 @@ public class Graph implements Cloneable{
             return;
         }
         Point p = nodes[start].getPoint();
-        System.out.println(p.getName());
+        //System.out.println(p.getName());
         if (start != firstStart || firstTime) {
             turnTwo(end, wight, firstStart, false);
         }

@@ -15,8 +15,13 @@ public class Cube implements IlogicalCubes{
     private ArrayList<String> didSteps =  new ArrayList<>();
 
 
+    public Cube(int sizeStone, int size, String name) {
+        this.sizeStone = sizeStone;
+        this.size = size;
+        this.name = name;
+    }
 
-    public Cube(Graph graph, int sizeStone,int size, String name ) {
+    public Cube(Graph graph, int sizeStone, int size, String name ) {
         try{
             this.workingGraph = (Graph) graph.clone();
             this.solvedGraph = (Graph) graph.clone();

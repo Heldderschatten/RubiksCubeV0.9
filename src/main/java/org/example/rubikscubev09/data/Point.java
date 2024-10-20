@@ -16,7 +16,7 @@ public class Point implements Cloneable{
         System.out.println("create point:" + this.name);
     }
     public String getName() {
-        System.out.println("Point.getName");
+        //System.out.println("Point.getName");
         return this.name;
     }
 

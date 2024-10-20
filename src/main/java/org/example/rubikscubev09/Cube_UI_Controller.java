@@ -34,6 +34,9 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+/**
+ * @version 0.5
+ */
 public class Cube_UI_Controller implements Initializable {
     private Stage stage;
     private Scene scene;

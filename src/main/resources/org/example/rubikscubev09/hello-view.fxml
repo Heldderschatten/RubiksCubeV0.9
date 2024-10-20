@@ -8,5 +8,6 @@
    <children>
       <ChoiceBox fx:id="cb_CubeSelectBox" layoutX="320.0" layoutY="326.0" prefWidth="150.0" />
       <Button fx:id="bt_generate" layoutX="374.0" layoutY="375.0" mnemonicParsing="false" onAction="#pressed_bt_generate" text="Start" />
+      <Button fx:id="CreateCube" layoutX="514.0" layoutY="326.0" mnemonicParsing="false" onAction="#pressed_CreateCube" text="CreateNewCube" />
    </children>
 </AnchorPane>
